@@ -125,9 +125,11 @@ class _NewPassScreenState extends State<NewPassScreen> {
       showCustomSnackBar('password_should_be'.tr);
     }else if(password != confirmPassword) {
       showCustomSnackBar('password_does_not_matched'.tr);
-    }else if(!authController.spatialCheck || !authController.lowercaseCheck || !authController.uppercaseCheck || !authController.numberCheck || !authController.lengthCheck){
-      showCustomSnackBar('provide_valid_password'.tr);
-    }else {
+    }
+    // else if(!authController.spatialCheck || !authController.lowercaseCheck || !authController.uppercaseCheck || !authController.numberCheck || !authController.lengthCheck){
+    //   showCustomSnackBar('provide_valid_password'.tr);
+    // }
+    else {
       if(widget.fromPasswordChange) {
         ProfileModel user = Get.find<ProfileController>().profileModel!;
         Get.find<ForgotPasswordController>().changePassword(user, password);

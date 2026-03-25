@@ -1,4 +1,5 @@
 import 'package:sixam_mart_store/features/store/domain/models/item_model.dart';
+import 'package:sixam_mart_store/util/json_parsers.dart';
 
 class ProfileModel {
   int? id;
@@ -104,7 +105,7 @@ class ProfileModel {
     todaysOrderCount = json['todays_order_count'];
     thisWeekOrderCount = json['this_week_order_count'];
     thisMonthOrderCount = json['this_month_order_count'];
-    memberSinceDays = json['member_since_days'];
+    memberSinceDays = parseInt(json['member_since_days']);
     cashInHands = json['cash_in_hands']?.toDouble();
     balance = json['balance']?.toDouble();
     totalEarning = json['total_earning']?.toDouble();

@@ -44,14 +44,14 @@ class AuthController extends GetxController implements GetxService {
   bool _lengthCheck = false;
   bool get lengthCheck => _lengthCheck;
 
-  bool _numberCheck = false;
-  bool get numberCheck => _numberCheck;
+  // bool _numberCheck = false;
+  // bool get numberCheck => _numberCheck;
 
-  bool _uppercaseCheck = false;
-  bool get uppercaseCheck => _uppercaseCheck;
+  // bool _uppercaseCheck = false;
+  // bool get uppercaseCheck => _uppercaseCheck;
 
-  bool _lowercaseCheck = false;
-  bool get lowercaseCheck => _lowercaseCheck;
+  // bool _lowercaseCheck = false;
+  // bool get lowercaseCheck => _lowercaseCheck;
 
   bool _spatialCheck = false;
   bool get spatialCheck => _spatialCheck;
@@ -257,26 +257,26 @@ class AuthController extends GetxController implements GetxService {
 
   void validPassCheck(String pass, {bool isUpdate = true}){
     _lengthCheck = false;
-    _numberCheck = false;
-    _uppercaseCheck = false;
-    _lowercaseCheck = false;
+    // _numberCheck = false;
+    // _uppercaseCheck = false;
+    // _lowercaseCheck = false;
     _spatialCheck = false;
 
     if(pass.length > 7){
       _lengthCheck = true;
     }
-    if(pass.contains(RegExp(r'[a-z]'))){
-      _lowercaseCheck = true;
-    }
-    if(pass.contains(RegExp(r'[A-Z]'))){
-      _uppercaseCheck = true;
-    }
+    // if(pass.contains(RegExp(r'[a-z]'))){
+    //   _lowercaseCheck = true;
+    // }
+    // if(pass.contains(RegExp(r'[A-Z]'))){
+    //   _uppercaseCheck = true;
+    // }
     if(pass.contains(RegExp(r'[ .!@#$&*~^%]'))){
       _spatialCheck = true;
     }
-    if(pass.contains(RegExp(r'[\d+]'))){
-      _numberCheck = true;
-    }
+    // if(pass.contains(RegExp(r'[\d+]'))){
+    //   _numberCheck = true;
+    // }
     if(isUpdate) {
       update();
     }
