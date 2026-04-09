@@ -3,7 +3,7 @@ import 'package:sixam_mart_store/util/images.dart';
 
 class AppConstants {
   static const String appName = 'Zaqoota Vendor';
-  static const double appVersion = 3.4;
+  static const double appVersion = 1.3;
 
   ///Flutter SDK: 3.35.6
 
@@ -341,10 +341,10 @@ class AppConstants {
         countryCode: 'US',
         languageCode: 'en'),
     LanguageModel(
-        imageUrl: Images.arabic,
-        languageName: 'Arabic',
-        countryCode: 'SA',
-        languageCode: 'ar'),
+        imageUrl: Images.urdu,
+        languageName: 'Urdu',
+        countryCode: 'PK',
+        languageCode: 'ur'),
     // LanguageModel(imageUrl: Images.spanish, languageName: 'Spanish', countryCode: 'ES', languageCode: 'es'),
     // LanguageModel(imageUrl: Images.bangla, languageName: 'Bengali', countryCode: 'BN', languageCode: 'bn'),
   ];

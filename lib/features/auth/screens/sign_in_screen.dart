@@ -187,6 +187,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 Row(children: [
                                   _buildTabLabel(context, authController, 0,
                                       'vendor_owner'.tr),
+                                  const SizedBox(width: 5),
                                   _buildTabLabel(context, authController, 1,
                                       'vendor_employee'.tr),
                                 ]),
