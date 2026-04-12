@@ -19,14 +19,14 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'helper/get_di.dart' as di;
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Map<String, Map<String, String>> languages = await di.init();
 
-  if(GetPlatform.isAndroid) {
+  if (GetPlatform.isAndroid) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
         apiKey: "AIzaSyAC055M9RZIbsTnqQFS9BkooEPxkjxh2pE",
@@ -35,21 +35,22 @@ Future<void> main() async {
         projectId: "zaqoota-452f2",
       ),
     );
-  }else {
+  } else {
     await Firebase.initializeApp();
   }
 
   NotificationBodyModel? body;
   try {
     if (GetPlatform.isMobile) {
-      final RemoteMessage? remoteMessage = await FirebaseMessaging.instance.getInitialMessage();
+      final RemoteMessage? remoteMessage =
+          await FirebaseMessaging.instance.getInitialMessage();
       if (remoteMessage != null) {
         body = NotificationHelper.convertNotification(remoteMessage.data);
       }
       await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
       FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     }
-  }catch(_) {}
+  } catch (_) {}
 
   runApp(MyApp(languages: languages, body: body));
 }
@@ -61,7 +62,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
@@ -79,35 +79,56 @@ class MyApp extends StatelessWidget {
           theme: themeController.darkTheme ? dark : light,
           locale: localizeController.locale,
           translations: Messages(languages: languages),
-          fallbackLocale: Locale(AppConstants.languages[0].languageCode!, AppConstants.languages[0].countryCode),
+          fallbackLocale: Locale(AppConstants.languages[0].languageCode!,
+              AppConstants.languages[0].countryCode),
           initialRoute: RouteHelper.getSplashRoute(body),
           getPages: RouteHelper.routes,
           defaultTransition: Transition.topLevel,
           transitionDuration: const Duration(milliseconds: 500),
           builder: (BuildContext context, widget) {
-            return MediaQuery(data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1)), child: Material(
-              child: SafeArea(
-                top: false, bottom: GetPlatform.isAndroid,
-                child: Stack(children: [
-                  widget!,
+            return MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: const TextScaler.linear(1)),
+                child: Material(
+                  child: SafeArea(
+                    top: false,
+                    bottom: GetPlatform.isAndroid,
+                    child: Stack(children: [
+                      widget!,
+                      GetBuilder<ProfileController>(
+                          builder: (profileController) {
+                        bool canShow = profileController.profileModel != null &&
+                            profileController.profileModel!.subscription !=
+                                null &&
+                            profileController
+                                    .profileModel!.subscription!.isTrial ==
+                                1 &&
+                            profileController
+                                    .profileModel!.subscription!.status ==
+                                1 &&
+                            DateConverterHelper.differenceInDaysIgnoringTime(
+                                    DateTime.parse(profileController
+                                        .profileModel!
+                                        .subscription!
+                                        .expiryDate!),
+                                    null) >
+                                0;
 
-                  GetBuilder<ProfileController>(builder: (profileController) {
-                    bool canShow = profileController.profileModel != null && profileController.profileModel!.subscription != null
-                        && profileController.profileModel!.subscription!.isTrial == 1 && profileController.profileModel!.subscription!.status == 1
-                        && DateConverterHelper.differenceInDaysIgnoringTime(DateTime.parse(profileController.profileModel!.subscription!.expiryDate!), null) > 0;
-
-                    return canShow && !profileController.trialWidgetNotShow ? Align(
-                      alignment: Alignment.bottomRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 90),
-                        child: TrialWidget(subscription: profileController.profileModel!.subscription!),
-                      ),
-                    ) : const SizedBox();
-                  }),
-
-                ]),
-              ),
-            ));
+                        return canShow && !profileController.trialWidgetNotShow
+                            ? Align(
+                                alignment: Alignment.bottomRight,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 90),
+                                  child: TrialWidget(
+                                      subscription: profileController
+                                          .profileModel!.subscription!),
+                                ),
+                              )
+                            : const SizedBox();
+                      }),
+                    ]),
+                  ),
+                ));
           },
         );
       });

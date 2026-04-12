@@ -923,7 +923,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           Text(
                             isBatteryPermission
-                                ? 'optimization'.tr
+                                ? 'Optimization'.tr
                                 : 'permission_required'.tr,
                             style: robotoBold.copyWith(
                               fontSize: Dimensions.fontSizeSmall,

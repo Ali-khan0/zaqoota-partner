@@ -118,7 +118,7 @@ class MenuScreen extends StatelessWidget {
     if (store?.module!.moduleType != 'food') {
       menuList.add(MenuModel(
           icon: Images.warning,
-          iconColor: Colors.white,
+          // iconColor: Colors.white,
           title: 'low_stock'.tr,
           route: RouteHelper.getLowStockRoute()));
     }
