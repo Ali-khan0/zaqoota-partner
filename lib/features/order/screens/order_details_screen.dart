@@ -38,7 +38,9 @@ import 'package:sixam_mart_store/features/order/widgets/slider_button_widget.dar
 import 'package:sixam_mart_store/features/order/widgets/verify_delivery_sheet_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sixam_mart_store/helper/notification_helper.dart';
 import 'package:url_launcher/url_launcher_string.dart';
+
 
 class OrderDetailsScreen extends StatefulWidget {
   final int orderId;
@@ -867,6 +869,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
 
                   Expanded(child: TextButton(
                     onPressed: (){
+                      stopService();
                       orderController.setOrderCancelReason('');
                       Get.dialog(CancellationDialogueWidget(orderId: order.id));
                     },
@@ -890,6 +893,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                       Get.dialog(ConfirmationDialogWidget(
                         icon: Images.warning, title: 'are_you_sure_to_confirm'.tr, description: 'you_want_to_confirm_this_order'.tr,
                         onYesPressed: () {
+                          stopService();
                           orderController.updateOrderStatus(widget.orderId, AppConstants.confirmed, back: true, fromNotification: true);
                         },
                       ), barrierDismissible: false);
@@ -907,9 +911,11 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> with WidgetsBin
                       Get.dialog(ConfirmationDialogWidget(
                         icon: Images.warning, title: 'are_you_sure_to_confirm'.tr, description: 'you_want_to_confirm_this_order'.tr,
                         onYesPressed: () {
+                          stopService();
                           orderController.updateOrderStatus(widget.orderId, AppConstants.confirmed, back: true);
                         },
                         onNoPressed: () {
+                          stopService();
                           if(cancelPermission!) {
                             orderController.updateOrderStatus(widget.orderId, AppConstants.canceled, back: true);
                           }else {
