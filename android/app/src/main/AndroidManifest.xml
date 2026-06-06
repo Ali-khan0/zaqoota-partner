@@ -38,7 +38,7 @@
         </queries>
 
         <application
-            android:label="Zaqoota Vendor"
+            android:label="Zaqoota Partner"
             android:name="${applicationName}"
             android:extractNativeLibs="true"
             android:requestLegacyExternalStorage="true"

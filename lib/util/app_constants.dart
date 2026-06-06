@@ -2,7 +2,7 @@ import 'package:sixam_mart_store/features/language/domain/models/language_model.
 import 'package:sixam_mart_store/util/images.dart';
 
 class AppConstants {
-  static const String appName = 'Zaqoota Vendor';
+  static const String appName = 'Zaqoota Partner';
   static const double appVersion = 1.5;
 
   ///Flutter SDK: 3.35.6

@@ -386,7 +386,7 @@ class MyTaskHandler extends TaskHandler {
   AudioPlayer? _localPlayer;
 
   void _playAudio() {
-    _localPlayer?.play(AssetSource('notification.mp3'));
+    _localPlayer?.play(AssetSource('notification.aac'));
   }
 
   @override

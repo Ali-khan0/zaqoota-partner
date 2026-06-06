@@ -80,7 +80,7 @@ flutter:
     - assets/image/
     - assets/image/taxi_image/
     - assets/language/
-    - assets/notification.mp3
+    - assets/notification.aac
     - assets/json/
 
   fonts:
