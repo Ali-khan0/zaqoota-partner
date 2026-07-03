@@ -1,7 +1,7 @@
 name: sixam_mart_store
 description: An application for multivendor ecommerce restaurant.
 publish_to: 'none'
-version: 1.0.0+5
+version: 1.0.0+7
 
 environment:
   sdk: '>=3.2.0 <4.0.0'
@@ -80,7 +80,7 @@ flutter:
     - assets/image/
     - assets/image/taxi_image/
     - assets/language/
-    - assets/notification.aac
+    - assets/notification.mp3
     - assets/json/
 
   fonts:
