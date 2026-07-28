@@ -11,8 +11,17 @@ class AppConstants {
   static const double limitOfPickedVideoSizeInMB = 50;
   static const double maxSizeOfASingleFile = 10;
 
-  // static const String baseUrl = 'https://6ammart-admin.6amtech.com';
-  static const String baseUrl = 'https://zaqoota.com';
+  static const String env = String.fromEnvironment('ENV', defaultValue: 'dev');
+
+  static String get baseUrl {
+    switch (env) {
+      case 'prod':
+        return 'https://zaqoota.com';
+      case 'dev':
+      default:
+        return 'https://dev.zaqoota.com';
+    }
+  }
 
   static const String configUri = '/api/v1/config';
   static const String loginUri = '/api/v1/auth/vendor/login';
