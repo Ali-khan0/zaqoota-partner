@@ -1,0 +1,80 @@
+name: Build Flutter App
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build (${{ github.ref_name }})
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Create Timestamp Variable
+      - name: Set Timestamp
+        id: timestamp
+        run: echo "DATETIME=$(date +'%Y%m%d-%H%M')" >> $GITHUB_ENV
+
+      # ================= DEV BUILD (DEBUG APK) =================
+      - name: Build DEV APK
+        if: github.ref == 'refs/heads/dev'
+        run: flutter build apk --debug --no-tree-shake-icons --dart-define=ENV=dev --build-number=${{ github.run_number }}
+
+      - name: Upload DEV APK
+        if: github.ref == 'refs/heads/dev'
+        uses: actions/upload-artifact@v4
+        with:
+          name: zaqoota-vendor-dev-${{ env.DATETIME }}
+          path: build/app/outputs/flutter-apk/app-debug.apk
+
+      # ================= PROD BUILD (SIGNED AAB) =================
+      # 1. Decode Keystore into android/app/key.jks
+      - name: Decode Keystore
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > android/app/key.jks
+
+      # 2. Inject key.properties dynamically for Gradle
+      - name: Create key.properties
+        if: github.ref == 'refs/heads/main'
+        run: |
+          cat <<EOF > android/key.properties
+          storePassword=${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.KEY_PASSWORD }}
+          keyAlias=${{ secrets.KEY_ALIAS }}
+          storeFile=key.jks
+          EOF
+
+      # 3. Build Signed Production AAB
+      - name: Build PROD App Bundle (AAB)
+        if: github.ref == 'refs/heads/main'
+        run: flutter build appbundle --release --dart-define=ENV=prod --build-number=${{ github.run_number }}
+
+      # 4. Upload Production AAB Artifact
+      - name: Upload PROD AAB
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: zaqoota-vendor-prod-${{ env.DATETIME }}
+          path: build/app/outputs/bundle/release/app-release.aab
