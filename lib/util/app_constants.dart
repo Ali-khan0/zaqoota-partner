@@ -19,7 +19,7 @@ class AppConstants {
         return 'https://zaqoota.com';
       case 'dev':
       default:
-        return 'https://dev.zaqoota.com';
+        return 'https://devzaqoota.corporatelemon.com';
     }
   }
 
