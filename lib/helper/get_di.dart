@@ -61,6 +61,11 @@ import 'package:sixam_mart_store/features/deliveryman/domain/repositories/delive
 import 'package:sixam_mart_store/features/deliveryman/domain/repositories/deliveryman_repository_interface.dart';
 import 'package:sixam_mart_store/features/deliveryman/domain/services/deliveryman_service.dart';
 import 'package:sixam_mart_store/features/deliveryman/domain/services/deliveryman_service_interface.dart';
+import 'package:sixam_mart_store/features/employee/controllers/employee_management_controller.dart';
+import 'package:sixam_mart_store/features/employee/domain/repositories/employee_management_repository.dart';
+import 'package:sixam_mart_store/features/employee/domain/repositories/employee_management_repository_interface.dart';
+import 'package:sixam_mart_store/features/employee/domain/services/employee_management_service.dart';
+import 'package:sixam_mart_store/features/employee/domain/services/employee_management_service_interface.dart';
 import 'package:sixam_mart_store/features/disbursement/controllers/disbursement_controller.dart';
 import 'package:sixam_mart_store/features/disbursement/domain/repositories/disbursement_repository.dart';
 import 'package:sixam_mart_store/features/disbursement/domain/repositories/disbursement_repository_interface.dart';
@@ -208,6 +213,9 @@ Future<Map<String, Map<String, String>>> init() async {
   DeliverymanRepositoryInterface deliverymanRepositoryInterface = DeliverymanRepository(apiClient: Get.find());
   Get.lazyPut(() => deliverymanRepositoryInterface);
 
+  EmployeeManagementRepositoryInterface employeeManagementRepositoryInterface = EmployeeManagementRepository(apiClient: Get.find());
+  Get.lazyPut(() => employeeManagementRepositoryInterface);
+
   DisbursementRepositoryInterface disbursementRepositoryInterface = DisbursementRepository(apiClient: Get.find());
   Get.lazyPut(() => disbursementRepositoryInterface);
 
@@ -306,6 +314,9 @@ Future<Map<String, Map<String, String>>> init() async {
   DeliverymanServiceInterface deliverymanServiceInterface = DeliverymanService(deliverymanRepositoryInterface: Get.find());
   Get.lazyPut(() => deliverymanServiceInterface);
 
+  EmployeeManagementServiceInterface employeeManagementServiceInterface = EmployeeManagementService(repository: Get.find());
+  Get.lazyPut(() => employeeManagementServiceInterface);
+
   DisbursementServiceInterface disbursementServiceInterface = DisbursementService(disbursementRepositoryInterface: Get.find());
   Get.lazyPut(() => disbursementServiceInterface);
 
@@ -382,6 +393,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => ReportController(reportServiceInterface: Get.find()));
   Get.lazyPut(() => CouponController(couponServiceInterface: Get.find()));
   Get.lazyPut(() => DeliveryManController(deliverymanServiceInterface: Get.find()));
+  Get.lazyPut(() => EmployeeManagementController(service: Get.find()));
   Get.lazyPut(() => DisbursementController(disbursementServiceInterface: Get.find()));
   Get.lazyPut(() => ForgotPasswordController(forgotPasswordServiceInterface: Get.find()));
   Get.lazyPut(() => LocalizationController(languageServiceInterface: Get.find()));

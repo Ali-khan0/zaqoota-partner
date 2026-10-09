@@ -89,48 +89,13 @@ class ProfileController extends GetxController implements GetxService {
 
   void _allowModulePermission(List<String>? roles) {
     debugPrint('---permission--->> $roles');
-    if (roles != null && roles.isNotEmpty) {
-      List<String> module = roles;
-      if (kDebugMode) {
-        print(module);
-      }
-      _modulePermissionBody = ModulePermissionModel(
-        dashboard: module.contains('dashboard'),
-        profile: module.contains('profile'),
-        order: module.contains('order'),
-        pos: module.contains('pos'),
-        item: module.contains('item'),
-        addon: module.contains('addon'),
-        category: module.contains('category'),
-        campaign: module.contains('campaign'),
-        coupon: module.contains('coupon'),
-        banner: module.contains('banner'),
-        advertisement: module.contains('advertisement'),
-        advertisementList: module.contains('advertisement_list'),
-        deliveryman: module.contains('deliveryman'),
-        deliverymanList: module.contains('deliveryman_list'),
-        wallet: module.contains('wallet'),
-        walletMethod: module.contains('wallet_method'),
-        role: module.contains('role'),
-        employee: module.contains('employee'),
-        expenseReport: module.contains('expense_report'),
-        disbursementReport: module.contains('disbursement_report'),
-        vatReport: module.contains('vat_report'),
-        storeSetup: module.contains('store_setup'),
-        notificationSetup: module.contains('notification_setup'),
-        myShop: module.contains('my_shop'),
-        businessPlan: module.contains('business_plan'),
-        reviews: module.contains('reviews'),
-        chat: module.contains('chat'),
-      );
-    } else {
-      _modulePermissionBody = ModulePermissionModel(
-        dashboard: true, profile: true, order: true, pos: true, item: true, addon: true, category: true, campaign: true, coupon: true, banner: true,
-        advertisement: true, advertisementList: true, deliveryman: true, deliverymanList: true, wallet: true, walletMethod: true, role: true,
-        employee: true, expenseReport: true, disbursementReport: true, vatReport: true, storeSetup: true, notificationSetup: true,
-        myShop: true, businessPlan: true, reviews: true, chat: true,
-      );
-    }
+    final isOwner = Get.find<AuthController>().getUserType() == 'owner';
+    // Owners have full Vendor access. Employees only receive the exact modules
+    // assigned to their role; missing or empty role data grants no modules.
+    _modulePermissionBody = ModulePermissionModel.forVendorSession(
+      isOwner: isOwner,
+      assignedModules: roles,
+    );
   }
 
   void initData() {
@@ -156,5 +121,4 @@ class ProfileController extends GetxController implements GetxService {
     _backgroundNotification = isActive;
     update();
   }
-
 }

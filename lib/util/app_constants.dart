@@ -39,6 +39,9 @@ class AppConstants {
   static const String notificationUri = '/api/v1/vendor/notifications';
   static const String profileUri = '/api/v1/vendor/profile';
   static const String updateProfileUri = '/api/v1/vendor/update-profile';
+  static const String employeeManagementUri = '/api/v1/vendor/employee-management';
+  static const String employeeListUri = '$employeeManagementUri/employees';
+  static const String employeeRolesUri = '$employeeManagementUri/roles';
   static const String basicCampaignUri = '/api/v1/vendor/get-basic-campaigns';
   static const String joinCampaignUri = '/api/v1/vendor/campaign-join';
   static const String leaveCampaignUri = '/api/v1/vendor/campaign-leave';
