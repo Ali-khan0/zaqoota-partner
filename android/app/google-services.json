@@ -1,36 +1,41 @@
 {
   "project_info": {
-    "project_number": "162018890200",
-    "project_id": "zaqoota-452f2",
-    "storage_bucket": "zaqoota-452f2.firebasestorage.app"
+    "project_number": "762048184531",
+    "project_id": "zaqoota-delivery",
+    "storage_bucket": "zaqoota-delivery.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:162018890200:android:9354303336718d6c0522ad",
+        "mobilesdk_app_id": "1:762048184531:android:6f2736a13406a6eb829426",
         "android_client_info": {
           "package_name": "com.freelince.zaqoota_mart_delivery_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "162018890200-ui4856k9qrq2l89stjbu43v13b10j82j.apps.googleusercontent.com",
+          "client_id": "762048184531-sp8h8i21e7a5glgnosbu3j1tq8vn7rcp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freelince.zaqoota_mart_delivery_app",
+            "certificate_hash": "08bfe4504053cd66a8d9ed7c561264d181f96931"
+          }
+        },
+        {
+          "client_id": "762048184531-7sbc4chivag4v7saht0jsct7l63skp6b.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAC055M9RZIbsTnqQFS9BkooEPxkjxh2pE"
-        },
-        {
-          "current_key": "AIzaSyDVB8gLjpG_vCsEqPyfTCWyigcc8d0te64"
+          "current_key": "AIzaSyBFdvdzkDr6qeBlsSVjBRTE7WwAKA6Am3Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "162018890200-ui4856k9qrq2l89stjbu43v13b10j82j.apps.googleusercontent.com",
+              "client_id": "762048184531-7sbc4chivag4v7saht0jsct7l63skp6b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -39,30 +44,35 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:162018890200:android:bf8315c8b7f79de20522ad",
+        "mobilesdk_app_id": "1:762048184531:android:45cfb19c575a4397829426",
         "android_client_info": {
           "package_name": "com.freelince.zaqoota_mart_store_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "162018890200-ui4856k9qrq2l89stjbu43v13b10j82j.apps.googleusercontent.com",
+          "client_id": "762048184531-risvq93c34pq6i7km8tsej4amtcg5753.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freelince.zaqoota_mart_store_app",
+            "certificate_hash": "ac3463f0d9309352022db699c6c4904548cb5251"
+          }
+        },
+        {
+          "client_id": "762048184531-7sbc4chivag4v7saht0jsct7l63skp6b.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAC055M9RZIbsTnqQFS9BkooEPxkjxh2pE"
-        },
-        {
-          "current_key": "AIzaSyDVB8gLjpG_vCsEqPyfTCWyigcc8d0te64"
+          "current_key": "AIzaSyBFdvdzkDr6qeBlsSVjBRTE7WwAKA6Am3Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "162018890200-ui4856k9qrq2l89stjbu43v13b10j82j.apps.googleusercontent.com",
+              "client_id": "762048184531-7sbc4chivag4v7saht0jsct7l63skp6b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -71,30 +81,43 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:162018890200:android:54bd0f7b51b5df080522ad",
+        "mobilesdk_app_id": "1:762048184531:android:4b891a336d799c23829426",
         "android_client_info": {
           "package_name": "com.freelince.zaqoota_mart_user"
         }
       },
       "oauth_client": [
         {
-          "client_id": "162018890200-ui4856k9qrq2l89stjbu43v13b10j82j.apps.googleusercontent.com",
+          "client_id": "762048184531-bu1j0h0hp6u64trfu9os8ob7qe5gpfg0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freelince.zaqoota_mart_user",
+            "certificate_hash": "9b8813b3c89f6eae77a2a639e05ccc29d2a258f8"
+          }
+        },
+        {
+          "client_id": "762048184531-gb00g3j1tm194ol5olqpekosdb02p3oi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.freelince.zaqoota_mart_user",
+            "certificate_hash": "9b155a8f0b03739c94af3584f647d0dcb96e363e"
+          }
+        },
+        {
+          "client_id": "762048184531-7sbc4chivag4v7saht0jsct7l63skp6b.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAC055M9RZIbsTnqQFS9BkooEPxkjxh2pE"
-        },
-        {
-          "current_key": "AIzaSyDVB8gLjpG_vCsEqPyfTCWyigcc8d0te64"
+          "current_key": "AIzaSyBFdvdzkDr6qeBlsSVjBRTE7WwAKA6Am3Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "162018890200-ui4856k9qrq2l89stjbu43v13b10j82j.apps.googleusercontent.com",
+              "client_id": "762048184531-7sbc4chivag4v7saht0jsct7l63skp6b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
