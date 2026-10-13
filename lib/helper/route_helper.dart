@@ -37,6 +37,12 @@ import 'package:sixam_mart_store/features/dashboard/screens/dashboard_screen.dar
 import 'package:sixam_mart_store/features/deliveryman/screens/add_delivery_man_screen.dart';
 import 'package:sixam_mart_store/features/deliveryman/screens/delivery_man_details_screen.dart';
 import 'package:sixam_mart_store/features/deliveryman/screens/delivery_man_screen.dart';
+import 'package:sixam_mart_store/features/employee/domain/models/vendor_employee_model.dart';
+import 'package:sixam_mart_store/features/employee/domain/models/employee_role_option_model.dart';
+import 'package:sixam_mart_store/features/employee/screens/add_employee_screen.dart';
+import 'package:sixam_mart_store/features/employee/screens/add_employee_role_screen.dart';
+import 'package:sixam_mart_store/features/employee/screens/employee_management_screen.dart';
+import 'package:sixam_mart_store/features/employee/screens/role_management_screen.dart';
 import 'package:sixam_mart_store/features/disbursement/screens/add_withdraw_method_screen.dart';
 import 'package:sixam_mart_store/features/disbursement/screens/disbursement_menu_screen.dart';
 import 'package:sixam_mart_store/features/disbursement/screens/disbursement_screen.dart';
@@ -94,6 +100,10 @@ class RouteHelper {
   static const String itemDetails = '/item-details';
   static const String deliveryMan = '/delivery-man';
   static const String addDeliveryMan = '/add-delivery-man';
+  static const String employeeManagement = '/employee-management';
+  static const String addEmployee = '/add-employee';
+  static const String employeeRoles = '/employee-roles';
+  static const String addEmployeeRole = '/add-employee-role';
   static const String deliveryManDetails = '/delivery-man-details';
   static const String terms = '/terms-and-condition';
   static const String privacy = '/privacy-policy';
@@ -183,6 +193,10 @@ class RouteHelper {
     return '$itemDetails?data=$data';
   }
   static String getDeliveryManRoute() => deliveryMan;
+  static String getEmployeeManagementRoute() => employeeManagement;
+  static String getAddEmployeeRoute() => addEmployee;
+  static String getEmployeeRolesRoute() => employeeRoles;
+  static String getAddEmployeeRoleRoute() => addEmployeeRole;
   static String getAddDeliveryManRoute(DeliveryManModel? deliveryMan) {
     if(deliveryMan == null) {
       return '$addDeliveryMan?data=null';
@@ -333,6 +347,10 @@ class RouteHelper {
       return ItemDetailsScreen(product: data);
     }),
     GetPage(name: deliveryMan, page: () => const DeliveryManScreen()),
+    GetPage(name: employeeManagement, page: () => const EmployeeManagementScreen()),
+    GetPage(name: addEmployee, page: () => AddEmployeeScreen(employee: Get.arguments as VendorEmployeeModel?)),
+    GetPage(name: employeeRoles, page: () => const RoleManagementScreen()),
+    GetPage(name: addEmployeeRole, page: () => AddEmployeeRoleScreen(role: Get.arguments as EmployeeRoleOptionModel?)),
     GetPage(name: addDeliveryMan, page: () {
       if(Get.parameters['data'] == 'null') {
         return const AddDeliveryManScreen(deliveryMan: null);

@@ -66,10 +66,10 @@ jobs:
           storeFile=key.jks
           EOF
 
-      # 3. Build Signed Production AAB
+      # 3. Build Signed Production AAB (Uses version code from pubspec.yaml)
       - name: Build PROD App Bundle (AAB)
         if: github.ref == 'refs/heads/main'
-        run: flutter build appbundle --release --dart-define=ENV=prod --build-number=${{ github.run_number }}
+        run: flutter build appbundle --release --dart-define=ENV=prod
 
       # 4. Upload Production AAB Artifact
       - name: Upload PROD AAB

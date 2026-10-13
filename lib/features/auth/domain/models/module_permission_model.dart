@@ -57,6 +57,44 @@ class ModulePermissionModel {
     this.chat,
   });
 
+  factory ModulePermissionModel.forVendorSession({
+    required bool isOwner,
+    List<String>? assignedModules,
+  }) {
+    final modules = assignedModules?.toSet() ?? <String>{};
+    bool allows(String module) => isOwner || modules.contains(module);
+
+    return ModulePermissionModel(
+      dashboard: allows('dashboard'),
+      profile: allows('profile'),
+      order: allows('order'),
+      pos: allows('pos'),
+      item: allows('item'),
+      addon: allows('addon'),
+      category: allows('category'),
+      campaign: allows('campaign'),
+      coupon: allows('coupon'),
+      banner: allows('banner'),
+      advertisement: allows('advertisement'),
+      advertisementList: allows('advertisement_list'),
+      deliveryman: allows('deliveryman'),
+      deliverymanList: allows('deliveryman_list'),
+      wallet: allows('wallet'),
+      walletMethod: allows('wallet_method'),
+      role: allows('role'),
+      employee: allows('employee'),
+      expenseReport: allows('expense_report'),
+      disbursementReport: allows('disbursement_report'),
+      vatReport: allows('vat_report'),
+      storeSetup: allows('store_setup'),
+      notificationSetup: allows('notification_setup'),
+      myShop: allows('my_shop'),
+      businessPlan: allows('business_plan'),
+      reviews: allows('reviews'),
+      chat: allows('chat'),
+    );
+  }
+
   ModulePermissionModel.fromJson(Map<String, dynamic> json) {
     dashboard = json['dashboard'];
     profile = json['profile'];

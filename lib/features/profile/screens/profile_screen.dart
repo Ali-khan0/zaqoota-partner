@@ -143,6 +143,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               }) : const SizedBox(),
               SizedBox(height: _isOwner ? Dimensions.paddingSizeSmall : 0),
 
+              _isOwner ? SwitchButtonWidget(icon: Icons.people_alt_outlined, title: 'employee_management'.tr, onTap: () {
+                Get.toNamed(RouteHelper.getEmployeeManagementRoute());
+              }) : const SizedBox(),
+              SizedBox(height: _isOwner ? Dimensions.paddingSizeSmall : 0),
+
               _isOwner ? SwitchButtonWidget(
                 icon: Icons.delete, title: 'delete_account'.tr,
                 onTap: () {
